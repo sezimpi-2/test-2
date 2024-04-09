@@ -14,6 +14,9 @@ def start_keyboard():
             ],
             [
                 types.InlineKeyboardButton(text="Пожертвуйте нам", callback_data="donate_us")
+            ],
+            [
+                types.InlineKeyboardButton(text="Пройти опрос", callback_data="survey")
             ]
         ]
     )
