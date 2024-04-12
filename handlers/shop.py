@@ -22,8 +22,16 @@ async def shop(message: types.Message):
     await message.answer('Выберите жанр', reply_markup=kb)
 
 
-@shop_router.message(F.text.lower() == 'хоррор')
+genres = ['драма', 'романтика', 'хоррор', 'фантастика']
+
+
+@shop_router.message(F.text.lower().in_(genres))
 async def show_horror(message: types.Message):
+    genre = message.text.lower()
+    print(genre)
     kb = types.ReplyKeyboardRemove()
-    print(message.text)
-    await message.answer('Все наши книги жанра хоррор', reply_markup=kb)
+    # cursor.execute(
+    #     "SELECT * FROM books WHERE genre = ?", 
+    #     (genre,)
+    # )
+    await message.answer(f'Все наши книги жанра {genre}', reply_markup=kb)
