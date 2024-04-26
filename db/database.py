@@ -9,12 +9,6 @@ class Database:
     async def create_tables(self) -> None:
         async with aiosqlite.connect(self.path) as db:
             await db.execute(Queries.CREATE_SURVEY_TABLE)
-            await db.execute(Queries.DROP_BOOKS_TABLE)
-            await db.execute(Queries.DROP_GENRES_TABLE)
-            await db.execute(Queries.CREATE_GENRES_TABLE)
-            await db.execute(Queries.CREATE_BOOKS_TABLE)
-            await db.execute(Queries.POPULATE_GENRES)
-            await db.execute(Queries.POPULATE_BOOKS)
             await db.commit()
 
     async def execute(self, query: str, params: tuple | None = None) -> None:
@@ -22,7 +16,6 @@ class Database:
             await db.execute(query, params or ())
             await db.commit()
 
-        
     async def fetch(self, query: str, params: tuple | None = None, fetch_type: str = 'all'):
         async with aiosqlite.connect(self.path) as db:
             db.row_factory = aiosqlite.Row
