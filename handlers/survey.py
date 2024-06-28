@@ -9,7 +9,7 @@ class BookSurvey(StatesGroup):
     name = State()
     age = State()
     occupation = State()
-    salary_or_grade = State()
+    salary = State()
 
 
 @survey_router.message(Command("stop"))
